@@ -24,7 +24,7 @@ Heygem是一款专为Windows系统设计的全离线视频合成工具，它能�
 
 1. Nodejs 18
 2. Docker Image
-    - docker pull guiji2025/fun-asr:1.0.1
+    - docker pull guiji2025/fun-asr:1.0.2
     - docker pull guiji2025/fish-speech-ziming:1.0.39
     - docker pull guiji2025/heygem.ai:0.0.7_sdk_slim
 
