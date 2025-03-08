@@ -1,10 +1,10 @@
 {
-  "name": "heygem",
+  "name": "heygem.ai",
   "version": "1.0.0",
-  "description": "An Electron application with Vue",
+  "description": "An open source, affordable alternative to Heygen",
   "main": "./out/main/index.js",
-  "author": "example.com",
-  "homepage": "https://electron-vite.org",
+  "author": "guiji.ai",
+  "homepage": "https://heygem.ai",
   "scripts": {
     "dev": "electron-vite dev --watch",
     "start": "electron-vite preview",
@@ -12,7 +12,6 @@
     "postinstall": "electron-builder install-app-deps",
     "build:unpack": "npm run build && electron-builder --dir --config=electron-builder.yml",
     "build:win": "npm run build && electron-builder --win --config=electron-builder.yml",
-    "build:mac": "npm run build && electron-builder --mac --config=electron-builder.yml",
     "build:linux": "npm run build && electron-builder --linux --config=electron-builder.yml",
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix"

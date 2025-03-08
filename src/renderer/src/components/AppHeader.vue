@@ -4,42 +4,26 @@
       <img class="logo" src="@renderer/assets/images/icons/logo.png" alt="logo" />
     </div>
     <div class="header-right">
-      <t-dropdown
-        :maxColumnWidth="false"
-        :min-column-width="88"
-        panel-top-content=""
-        placement="bottom-right"
-        @click="action.clickHandler"
-      >
+      <t-dropdown :maxColumnWidth="false" :min-column-width="88" panel-top-content="" placement="bottom-right"
+        @click="action.clickHandler">
         <div class="header-right-item" style="width: 70px">
           <img src="@renderer/assets/images/icons/setting.svg" alt="setting" />
           <div class="header-right-item-text">{{ $t('common.setting.title') }}</div>
         </div>
         <t-dropdown-menu>
-          <t-dropdown-item
-            :value="item.value"
-            v-for="(item, index) in state.menuList"
-            :key="index + 'menuList'"
-            class="dropdown-box"
-          >
+          <t-dropdown-item :value="item.value" v-for="(item, index) in state.menuList" :key="index + 'menuList'"
+            class="dropdown-box">
             <div class="language-switch-box">
               <span>{{ item.content }}</span>
-              <img
-                v-if="item.value === 'languageSwitch'"
-                src="@renderer/assets/images/icons/switch.svg"
-                alt="switch"
-                class="language-switch"
-              />
+              <img v-if="item.value === 'languageSwitch'" src="@renderer/assets/images/icons/switch.svg" alt="switch"
+                class="language-switch" />
             </div>
 
             <t-dropdown-menu v-if="item.children">
-              <t-dropdown-item
-                v-for="(itemChildren, indexChildren) in item.children"
-                :key="indexChildren + 'itemChildren'"
-                :value="itemChildren.value"
-                :class="itemChildren.value === home.homeState.language ? 'language-active' : ''"
-                >{{ itemChildren.content }}</t-dropdown-item
-              >
+              <t-dropdown-item v-for="(itemChildren, indexChildren) in item.children"
+                :key="indexChildren + 'itemChildren'" :value="itemChildren.value"
+                :class="itemChildren.value === home.homeState.language ? 'language-active' : ''">{{ itemChildren.content
+                }}</t-dropdown-item>
             </t-dropdown-menu>
           </t-dropdown-item>
         </t-dropdown-menu>
@@ -50,11 +34,8 @@
         </t-tooltip>
       </div>
       <div class="header-right-item" @click="action.maximize">
-        <t-tooltip
-          :content="
-            state.isMaximized ? $t('common.header.restoreText') : $t('common.header.minimizeText')
-          "
-        >
+        <t-tooltip :content="state.isMaximized ? $t('common.header.restoreText') : $t('common.header.minimizeText')
+          ">
           <img src="@renderer/assets/images/icons/maximize.png" />
         </t-tooltip>
       </div>
@@ -83,6 +64,11 @@ const state = reactive({
       content: '用户协议',
       key: 'common.setting.tab.userAgreementText',
       value: 'agreement'
+    },
+    {
+      content: '打开日志',
+      key: 'common.setting.tab.openLogText',
+      value: 'openLog'
     },
     {
       content: '语言切换',
@@ -129,6 +115,8 @@ const action = {
   clickHandler({ value }) {
     if (value === 'agreement') {
       home.setAgreementVisible(true)
+    } else if (value === 'openLog') {
+      Client.app.openLog()
     } else {
       if (value === 'languageSwitch') return
       window.localStorage.setItem('language', value)
@@ -151,9 +139,11 @@ const saveContextAjax = async (lang) => {
 .dropdown-box .t-icon-chevron-right {
   display: none !important;
 }
+
 .language-active {
   color: #166aff !important;
 }
+
 .t-dropdown__item-text .language-switch {
   width: 16px;
   display: block;
@@ -165,6 +155,7 @@ const saveContextAjax = async (lang) => {
 .language-switch-box {
   display: flex;
 }
+
 .header {
   width: 100%;
   height: 60px;
@@ -208,6 +199,7 @@ const saveContextAjax = async (lang) => {
       &:hover {
         background-color: #f2f2f4;
       }
+
       &-text {
         font-family: PingFang SC, PingFang SC;
         font-weight: 400;
