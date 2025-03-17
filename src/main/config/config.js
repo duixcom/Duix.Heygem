@@ -8,8 +8,8 @@ export const serviceUrl = {
 }
 
 export const assetPath = {
-  model: path.join('D:','heygem_data', 'face2face', 'temp'), // 模特视频
-  ttsProduct: path.join('D:','heygem_data', 'face2face', 'temp'), // TTS 产物
-  ttsRoot: path.join('D:','heygem_data', 'voice', 'data'), // TTS服务根目录
-  ttsTrain: path.join('D:','heygem_data', 'voice', 'data','origin_audio') // TTS 训练产物
+  model: path.join('D:', 'heygem_data', 'face2face', 'temp'), // 模特视频
+  ttsProduct: path.join('D:', 'heygem_data', 'face2face', 'temp'), // TTS 产物
+  ttsRoot: path.join('D:', 'heygem_data', 'voice', 'data'), // TTS服务根目录
+  ttsTrain: path.join('D:', 'heygem_data', 'voice', 'data', 'origin_audio') // TTS 训练产物
 }

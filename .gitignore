@@ -4,3 +4,4 @@ out
 .idea
 .DS_Store
 *.log*
+.pnpm-lock.yaml

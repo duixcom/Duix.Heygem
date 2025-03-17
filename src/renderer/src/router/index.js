@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import home from '@renderer/views/home/index.vue'
 import account from '@renderer/views/account/index.vue'
 import VideoEditView from '@renderer/views/video-edit/VideoEditView.vue'
+import Coze from '@renderer/views/coze/index.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -26,6 +27,11 @@ const router = createRouter({
       name: 'account',
       component: account
     },
+    {
+      path: '/coze',
+      name: 'coze',
+      component: Coze
+    }
   ]
 })
 
