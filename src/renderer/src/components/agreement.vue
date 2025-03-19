@@ -87,7 +87,6 @@
         <div
           v-if="!home.homeState.isAgree"
           class="agree-btn"
-          :class="{ disabled: state.isDisable }"
           @click="onAgree"
         >
           我已阅读并同意遵守此承诺
@@ -274,7 +273,6 @@
         <div
           v-if="!home.homeState.isAgree"
           class="agree-btn"
-          :class="{ disabled: state.isDisable }"
           @click="onAgree"
         >
           I have read and agree
@@ -298,29 +296,9 @@ defineProps({
   }
 })
 const agreementRef = ref(null)
-const state = reactive({
-  isDisable: true
-})
 const emit = defineEmits(['update:modelValue', 'change'])
-const scrollAgreement = (e) => {
-  state.isDisable =
-    Math.abs(
-      e.target.scrollHeight * window.devicePixelRatio -
-        (e.target.scrollTop + e.target.clientHeight) * window.devicePixelRatio
-    ) > 1
-}
-onUpdated(() => {
-  state.isDisable =
-    Math.abs(
-      agreementRef.value.scrollHeight * window.devicePixelRatio -
-        (agreementRef.value.scrollTop + agreementRef.value.clientHeight) * window.devicePixelRatio
-    ) > 1
-})
 
 const onAgree = () => {
-  if (state.isDisable) {
-    return
-  }
   close()
 }
 

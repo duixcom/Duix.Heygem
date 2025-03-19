@@ -1,8 +1,43 @@
-# Heygem - Open Source Alternative to Heygen [【中文】](./README_zh.md)
+# Heygem - Open Source Alternative to Heygen [【切换中文】](./README_zh.md)
 
-![image-20250304114114272](README_zh.assets/image-20250304114114272.png)
+## Important Notice to Developer Partners
+
+**Dear Heygem Open Source Community Members:**
+
+We sincerely thank you for your enthusiastic attention and active participation in the Heygem digital human open source project! We have noticed that some developers face challenges during local deployment. To better meet the needs of different scenarios, we are now announcing two parallel service solutions:
+
+| **Project**              | **HeyGem Open Source Local Deployment**                                                                                                                               | **Digital Human/Clone Voice API Service**                                                                                                  |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Usage                    | Open Source Local Deployment                                                                                                                                          | Rapid Clone API Service                                                                                                                    |
+| Recommended              | Technical Users                                                                                                                                                       | Business Users                                                                                                                             |
+| Technical Threshold      | Developers with deep learning framework experience/pursuing deep customization/wishing to participate in community co-construction                                    | Quick business integration/focus on upper-level application development/need enterprise-level SLA assurance for commercial scenarios       |
+| Hardware Requirements    | Need to purchase GPU server                                                                                                                                           | No need to purchase GPU server                                                                                                             |
+| Customization            | Can modify and extend the code according to your needs, fully controlling the software's functions and behavior                                                       | Cannot directly modify the source code, can only extend functions through API-provided interfaces, less flexible than open source projects |
+| Technical Support        | Community Support                                                                                                                                                     | Dynamic expansion support + professional technical response team                                                                           |
+| Maintenance Cost         | High maintenance cost                                                                                                                                                 | Simple maintenance                                                                                                                         |
+| Lip Sync Effect          | Usable effect                                                                                                                                                         | Stunning and higher definition effect                                                                                                      |
+| Commercial Authorization | Supports global free commercial use (enterprises with more than 100,000 users or annual revenue exceeding 10 million USD need to sign a commercial license agreement) | Commercial use allowed                                                                                                                     |
+| Iteration Speed          | Slow updates, bug fixes depend on the community                                                                                                                       | Latest models/algorithms are prioritized, fast problem resolution                                                                          |
+
+We always adhere to the open source spirit, and the launch of the API service aims to provide a more complete solution matrix for developers with different needs. No matter which method you choose, you can always obtain technical support documents through James@toolwiz.com. We look forward to working with you to promote the inclusive development of digital human technology!
+
+**Silicon-based Intelligent Developer Team**
+
+<a href="https://v.douyin.com/i57bXKqE/" target="_blank">Heygem Open Source Local Deployment Tutorial</a>
+
+[**Rapid Clone API**](https://app.guiji.cn/platform) | [**API Documentation Center**](https://guiji.cn/digital-docs/introduce/)
+
+[**Real-time Interaction SDK**](https://app.guiji.cn/platform) | [**SDK Documentation Center**](https://guiji.cn/duix-light-document/introduce/)
+
+[**Local Real-time Interaction (realtime) duix.ai Open Source Address**](https://github.com/GuijiAI/duix.ai) |
+[**Android Version**](https://github.com/GuijiAI/duix.ai/blob/main/duix-android/dh_aigc_android/README.md) |
+[**IOS Version**](https://github.com/GuijiAI/duix.ai/blob/main/duix-ios/GJLocalDigitalDemo/GJLocalDigitalSDK.md)
+
+<img src="./README_zh.assets/1CB5196D-C989-4577-8C57-DCBA3E0871B2-51277-000008CE6CF0B87B.jpg" width="50%">
 
 ## Introduction
+
+<img src="README_zh.assets/image-20250304114114272.png">
 
 Heygem is a fully offline video synthesis tool designed for Windows systems that can precisely clone your appearance and voice, digitalizing your image. You can create videos by driving virtual avatars through text and voice. No internet connection is required, protecting your privacy while enjoying convenient and efficient digital experiences.
 
@@ -24,11 +59,14 @@ Heygem is a fully offline video synthesis tool designed for Windows systems that
 
 1. Nodejs 18
 2. Docker Images
-   - docker pull guiji2025/fun-asr:1.0.2
-   - docker pull guiji2025/fish-speech-ziming:1.0.39
-   - docker pull guiji2025/heygem.ai:0.0.7_sdk_slim
+   - docker pull guiji2025/fun-asr
+   - docker pull guiji2025/fish-speech-ziming
+   - docker pull guiji2025/heygem.ai
 
 ## Installation
+
+<video src="https://cdn.guiji.ai/heygem/heygem-install.mp4" controls="controls" style="max-width: 730px;">
+</video>
 
 ### Prerequisites
 
@@ -90,9 +128,7 @@ Heygem is a fully offline video synthesis tool designed for Windows systems that
 Installation using Docker, docker-compose as follows:
 
 1. The `docker-compose.yml` file is in the `/deploy` directory.
-
 2. Execute `docker-compose up -d` in the `/deploy` directory
-
 3. Wait patiently (about half an hour, speed depends on network), download will consume about 70GB of traffic, make sure to use WiFi
 4. When you see three services in Docker, it indicates success
 
@@ -100,8 +136,8 @@ Installation using Docker, docker-compose as follows:
 
 ### Client
 
-1. Build script `npm run build:win`, after execution will generate `HeyGem-1.0.0-setup.exe` in the `dist` directory
-2. Double-click `HeyGem-1.0.0-setup.exe` to install
+1. Directly download the [officially built installation package](https://github.com/GuijiAI/HeyGem.ai/releases)
+2. Double-click `HeyGem-x.x.x-setup.exe` to install
 
 ## Open APIs
 
@@ -181,7 +217,7 @@ Interface: `http://127.0.0.1:18180/v1/invoke`
   ```
 
 - Progress query: `http://127.0.0.1:8383/easy/query?code=${taskCode}`
-  > GET request, parameter `taskCode` is the return value from the above synthesis interface
+  > GET request, the parameter `taskCode` is the `code` from the synthesis interface input above
 
 ## Self-Check Steps Before Asking Questions
 
@@ -221,7 +257,7 @@ Interface: `http://127.0.0.1:18180/v1/invoke`
 ## Contact Us
 
 ```
-  end_sub@hotmail.com
+  James@toolwiz.com
 ```
 
 ## License

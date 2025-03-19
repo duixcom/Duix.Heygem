@@ -106,6 +106,9 @@
               <div class="progress-text">{{ item.progress }}%</div>
               <div class="production-text">{{ $t('common.videoList.underProduction') }}</div>
             </div>
+            <div class="delete-video" @click.native="delVideo(item.id)">
+              <DeleteIcon style="color: #fff; font-size: 12px" />
+            </div>
           </div>
           <!-- 排队中 -->
           <div v-if="item.status === 'waiting'" class="production comme">
@@ -113,6 +116,9 @@
               <img src="../../../assets/images/home/loading.svg" />
               <div class="progress-text">{{ item.progress }}</div>
               <div class="production-text">{{ $t('common.videoList.queuing') }}</div>
+            </div>
+            <div class="delete-video" @click="delVideo(item.id)">
+              <DeleteIcon style="color: #fff; font-size: 12px" />
             </div>
           </div>
           <!-- 视频下部分内容 -->
@@ -246,6 +252,7 @@ const onCurrentChange = (index) => {
 }
 
 const delVideo = (id) => {
+  console.log("🚀 ~ delVideo ~ id:", id)
   if (deleteDialogRef.value && deleteDialogRef.value.showDialogFun) {
     deleteDialogRef.value.showDialogFun()
     state.delVideoId = id
@@ -362,21 +369,6 @@ const downloadVideo = async (video) => {
               }
             }
 
-            .delete-video {
-              width: 20px;
-              height: 20px;
-              background: rgba(255, 255, 255, 0.2);
-              border-radius: 6px;
-              position: absolute;
-              left: 10px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              cursor: pointer;
-              top: 10px;
-              z-index: 1;
-            }
-
             .detection-failed-text {
               font-family: PingFang SC, PingFang SC;
               font-weight: 500;
@@ -424,6 +416,20 @@ const downloadVideo = async (video) => {
           }
         }
       }
+
+      .delete-video {
+          width: 20px;
+          height: 20px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 6px;
+          position: absolute;
+          left: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          top: 10px;
+        }
 
       .li {
         transition: all 0.3s ease;
@@ -560,7 +566,7 @@ const downloadVideo = async (video) => {
         }
 
         .production {
-          z-index: 1;
+          z-index: 2;
           background: rgba(0, 0, 0, 0.74);
           display: flex;
           justify-content: center;
