@@ -1,6 +1,6 @@
 {
   "name": "heygem.ai",
-  "version": "1.0.3",
+  "version": "1.0.3-lite",
   "description": "An open source, affordable alternative to Heygen",
   "main": "./out/main/index.js",
   "author": "guiji.ai",

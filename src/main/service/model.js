@@ -29,31 +29,9 @@ function addModel(modelName, videoPath) {
 
   fs.copyFileSync(videoPath, modelPath)
 
-  // 用ffmpeg分离音频
-  if (!fs.existsSync(assetPath.ttsTrain)) {
-    fs.mkdirSync(assetPath.ttsTrain, {
-      recursive: true
-    })
-  }
-  const audioPath = path.join(assetPath.ttsTrain, modelFileName.replace(extname, '.wav'))
-  return extractAudio(modelPath, audioPath).then(() => {
-    // 训练语音模型
-    const relativeAudioPath = path.relative(assetPath.ttsRoot, audioPath)
-    if (process.env.NODE_ENV === 'development') {
-      // TODO 写死调试
-      return trainVoice('origin_audio/test.wav', 'zh')
-    } else {
-      return trainVoice(relativeAudioPath, 'zh')
-    }
-  }).then((voiceId)=>{
-    // 插入模特信息
-    const relativeModelPath = path.relative(assetPath.model, modelPath)
-    const relativeAudioPath = path.relative(assetPath.ttsRoot, audioPath)
-
-    // insert model info to db
-    const id = insert({ modelName, videoPath: relativeModelPath, audioPath: relativeAudioPath, voiceId })
-    return id
-  })
+  const relativeModelPath = path.relative(assetPath.model, modelPath)
+  const id = insert({ modelName, videoPath: relativeModelPath, audioPath: '', voiceId: '' })
+  return Promise.resolve(id)
 }
 
 function page({ page, pageSize, name = '' }) {
