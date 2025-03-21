@@ -4,29 +4,54 @@ import log from '../logger.js'
 
 const ffmpegPathValue =
   process.env.NODE_ENV === 'development'
-    ? path.join(__dirname, '../../resources/ffmpeg/bin/ffmpeg.exe')
-    : path.join(
-        process.resourcesPath,
-        'app.asar.unpacked',
-        'resources',
-        'ffmpeg',
-        'bin',
-        'ffmpeg.exe'
-      )
+    ? process.platform === 'win32'
+      ? path.join(__dirname, '../../resources/ffmpeg/bin/ffmpeg.exe')
+      : path.join(__dirname, '../../resources/ffmpeg/bin/ffmpeg')
+    : process.platform === 'win32'
+      ? path.join(
+          process.resourcesPath,
+          'app.asar.unpacked',
+          'resources',
+          'ffmpeg',
+          'bin',
+          'ffmpeg.exe'
+        )
+      : path.join(
+          process.resourcesPath,
+          'app.asar.unpacked',
+          'resources',
+          'ffmpeg',
+          'bin',
+          'ffmpeg'
+        )
+
+// 恢复ffprobePathValue定义
+const ffprobePathValue =
+  process.env.NODE_ENV === 'development'
+    ? process.platform === 'win32'
+      ? path.join(__dirname, '../../resources/ffmpeg/bin/ffprobe.exe')
+      : path.join(__dirname, '../../resources/ffmpeg/bin/ffprobe')
+    : process.platform === 'win32'
+      ? path.join(
+          process.resourcesPath,
+          'app.asar.unpacked',
+          'resources',
+          'ffmpeg',
+          'bin',
+          'ffprobe.exe'
+        )
+      : path.join(
+          process.resourcesPath,
+          'app.asar.unpacked',
+          'resources',
+          'ffmpeg',
+          'bin',
+          'ffprobe'
+        )
+
 log.info('FFmpeg path:', ffmpegPathValue)
 ffmpeg.setFfmpegPath(ffmpegPathValue)
 
-const ffprobePathValue =
-  process.env.NODE_ENV === 'development'
-    ? path.join(__dirname, '../../resources/ffmpeg/bin/ffprobe.exe')
-    : path.join(
-      process.resourcesPath,
-      'app.asar.unpacked',
-      'resources',
-      'ffmpeg',
-      'bin',
-      'ffprobe.exe'
-    )
 log.info('FFprobe path:', ffprobePathValue)
 ffmpeg.setFfprobePath(ffprobePathValue)
 
