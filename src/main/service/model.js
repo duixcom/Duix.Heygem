@@ -36,24 +36,31 @@ function addModel(modelName, videoPath) {
     })
   }
   const audioPath = path.join(assetPath.ttsTrain, modelFileName.replace(extname, '.wav'))
-  return extractAudio(modelPath, audioPath).then(() => {
-    // 训练语音模型
-    const relativeAudioPath = path.relative(assetPath.ttsRoot, audioPath)
-    if (process.env.NODE_ENV === 'development') {
-      // TODO 写死调试
-      return trainVoice('origin_audio/test.wav', 'zh')
-    } else {
-      return trainVoice(relativeAudioPath, 'zh')
-    }
-  }).then((voiceId)=>{
-    // 插入模特信息
-    const relativeModelPath = path.relative(assetPath.model, modelPath)
-    const relativeAudioPath = path.relative(assetPath.ttsRoot, audioPath)
+  return extractAudio(modelPath, audioPath)
+    .then(() => {
+      // 训练语音模型
+      const relativeAudioPath = path.relative(assetPath.ttsRoot, audioPath)
+      if (process.env.NODE_ENV === 'development') {
+        // TODO 写死调试
+        return trainVoice('origin_audio/test.wav', 'zh')
+      } else {
+        return trainVoice(relativeAudioPath, 'zh')
+      }
+    })
+    .then((voiceId) => {
+      // 插入模特信息
+      const relativeModelPath = path.relative(assetPath.model, modelPath)
+      const relativeAudioPath = path.relative(assetPath.ttsRoot, audioPath)
 
-    // insert model info to db
-    const id = insert({ modelName, videoPath: relativeModelPath, audioPath: relativeAudioPath, voiceId })
-    return id
-  })
+      // insert model info to db
+      const id = insert({
+        modelName,
+        videoPath: relativeModelPath,
+        audioPath: relativeAudioPath,
+        voiceId
+      })
+      return id
+    })
 }
 
 function page({ page, pageSize, name = '' }) {
@@ -82,13 +89,13 @@ function removeModel(modelId) {
   log.debug('~ removeModel ~ modelId:', modelId)
 
   // 删除视频
-  const videoPath = path.join(assetPath.model, model.video_path ||'')
+  const videoPath = path.join(assetPath.model, model.video_path || '')
   if (!isEmpty(model.video_path) && fs.existsSync(videoPath)) {
     fs.unlinkSync(videoPath)
   }
 
   // 删除音频
-  const audioPath = path.join(assetPath.ttsRoot, model.audio_path ||'')
+  const audioPath = path.join(assetPath.ttsRoot, model.audio_path || '')
   if (!isEmpty(model.audio_path) && fs.existsSync(audioPath)) {
     fs.unlinkSync(audioPath)
   }

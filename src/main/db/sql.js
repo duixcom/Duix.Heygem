@@ -1,7 +1,7 @@
 export default [
-    {
-        version: 1,
-        script: `
+  {
+    version: 1,
+    script: `
                 create table context
                 (
                     id  INTEGER not null
@@ -44,10 +44,10 @@ export default [
                     text_content TEXT
                 );
                 `
-    },
-    {
-        version: 2,
-        script: `create table voice
+  },
+  {
+    version: 2,
+    script: `create table voice
                 (
                     id                   INTEGER
                         constraint tts_train_task_pk
@@ -59,11 +59,46 @@ export default [
                     created_at           INTEGER
                 );
                 `
-    },
-    {
-        version: 3,
-        script: `alter table video
+  },
+  {
+    version: 3,
+    script: `alter table video
                     add voice_id integer;
                 `
-    }
+  },
+  {
+    version: 4,
+    script: ` CREATE TABLE IF NOT EXISTS coze_workflow
+                (
+                    id         INTEGER
+                        constraint coze_workflow_pk
+                            primary key autoincrement,
+                    name       TEXT,
+                    workflow_id TEXT,
+                    app_id     TEXT,
+                    coze_token TEXT,
+                    desc        TEXT,
+                    status     TEXT,
+                    created_at INTEGER
+                );
+                
+                `
+  },
+  {
+    version: 5,
+    script: `
+                alter table coze_workflow
+                    add  execute_id TEXT;
+                
+                CREATE TABLE IF NOT EXISTS coze_workflow_result
+                (
+                    id         INTEGER
+                        constraint coze_workflow_pk
+                            primary key autoincrement,
+                    workflow_id       Text,
+                    text       TEXT,
+                    execute_id     TEXT,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                );`
+  }
 ]

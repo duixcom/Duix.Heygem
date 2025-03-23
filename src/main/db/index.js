@@ -8,6 +8,7 @@ import { update as updateContext, findByKey } from '../dao/context.js'
 
 const userDataPath = app.getPath('userData')
 const dbPath = path.join(userDataPath, 'biz.db')
+// console.log('dbPath:', dbPath)
 
 // 保持一个全局的数据库连接
 let dbInstance = null
@@ -19,16 +20,21 @@ export function initDB() {
     db.exec(sql[0].script)
     db.close()
   }
+  log.debug('dbPath:', dbPath)
   updateDB()
 }
 
 function updateDB() {
   const db = connect()
+  log.debug('update db pre:', findByKey('db_version').val)
   const dbVersion = findByKey('db_version').val
-  sql.filter(item => item.version > +dbVersion).forEach(item => {
-    db.exec(item.script)
-    updateContext('db_version', item.version)
-  })
+  sql
+    .filter((item) => item.version > +dbVersion)
+    .forEach((item) => {
+      log.debug('update db item:', item.version, item.script)
+      db.exec(item.script)
+      updateContext('db_version', item.version)
+    })
 }
 
 export function connect() {
@@ -54,11 +60,11 @@ export function connect() {
       stmt.run = function (...args) {
         const options = args[args.length - 1]
         const shouldLog = !(options && typeof options === 'object' && options.silent === true)
-        
+
         if (shouldLog) {
           log.debug('[SQL Run]:', sql, args)
         }
-        
+
         // 如果最后一个参数是选项对象，则移除它
         const sqlArgs = options && typeof options === 'object' ? args.slice(0, -1) : args
         return originalRun(...sqlArgs)
@@ -68,11 +74,11 @@ export function connect() {
       stmt.get = function (...args) {
         const options = args[args.length - 1]
         const shouldLog = !(options && typeof options === 'object' && options.silent === true)
-        
+
         if (shouldLog) {
           log.debug('[SQL Get]:', sql, args)
         }
-        
+
         const sqlArgs = options && typeof options === 'object' ? args.slice(0, -1) : args
         return originalGet(...sqlArgs)
       }
@@ -81,11 +87,11 @@ export function connect() {
       stmt.all = function (...args) {
         const options = args[args.length - 1]
         const shouldLog = !(options && typeof options === 'object' && options.silent === true)
-        
+
         if (shouldLog) {
           log.debug('[SQL All]:', sql, args)
         }
-        
+
         const sqlArgs = options && typeof options === 'object' ? args.slice(0, -1) : args
         return originalAll(...sqlArgs)
       }

@@ -4,7 +4,13 @@ import path from 'path'
 import fs from 'fs'
 import { isEmpty } from 'lodash'
 import { assetPath } from '../config/config.js'
-import { selectPage,selectByStatus, updateStatus, remove as deleteVideo, findFirstByStatus } from '../dao/video.js'
+import {
+  selectPage,
+  selectByStatus,
+  updateStatus,
+  remove as deleteVideo,
+  findFirstByStatus
+} from '../dao/video.js'
 import { selectByID as selectF2FModelByID } from '../dao/f2f-model.js'
 import { selectByID as selectVoiceByID } from '../dao/voice.js'
 import {
@@ -14,7 +20,7 @@ import {
   selectByID as selectVideoByID
 } from '../dao/video.js'
 import { makeAudio4Video, copyAudio4Video } from './voice.js'
-import { makeVideo as makeVideoApi,getVideoStatus } from '../api/f2f.js'
+import { makeVideo as makeVideoApi, getVideoStatus } from '../api/f2f.js'
 import log from '../logger.js'
 import { getVideoDuration } from '../util/ffmpeg.js'
 
@@ -36,7 +42,7 @@ function page({ page, pageSize, name = '' }) {
       file_path: video.file_path ? path.join(assetPath.model, video.file_path) : video.file_path
     }
 
-    if(video.status === 'waiting'){
+    if (video.status === 'waiting') {
       video.progress = `${waitingVideos.indexOf(video.id) + 1} / ${waitingVideos.length}`
     }
     return video
@@ -62,7 +68,7 @@ function countVideo(name = '') {
 
 function saveVideo({ id, model_id, name, text_content, voice_id, audio_path }) {
   const video = selectVideoByID(id)
-  if(audio_path){
+  if (audio_path) {
     audio_path = copyAudio4Video(audio_path)
   }
 
@@ -84,12 +90,12 @@ function makeVideo(videoId) {
 }
 
 export async function synthesisVideo(videoId) {
-  try{
+  try {
     update({
       id: videoId,
       file_path: null,
       status: 'pending',
-      message: '正在提交任务',
+      message: '正在提交任务'
     })
 
     // 查询Video
@@ -101,10 +107,10 @@ export async function synthesisVideo(videoId) {
     log.debug('~ makeVideo ~ model:', model)
 
     let audioPath
-    if(video.audio_path){
+    if (video.audio_path) {
       // 将audio_path复制到ttsProduct目录下
       audioPath = video.audio_path
-    }else{
+    } else {
       // 根据model信息中的voiceId获取voice信息
       const voice = selectVoiceByID(video.voice_id || model.voice_id)
       log.debug('~ makeVideo ~ voice:', voice)
@@ -121,15 +127,16 @@ export async function synthesisVideo(videoId) {
     let result, param
     if (process.env.NODE_ENV === 'development') {
       // 写死调试
-      ({ result, param } = await makeVideoByF2F('test.wav', 'test.mp4'))
+      ;({ result, param } = await makeVideoByF2F('test.wav', 'test.mp4'))
     } else {
-      ({ result, param } = await makeVideoByF2F(audioPath, model.video_path))
+      ;({ result, param } = await makeVideoByF2F(audioPath, model.video_path))
     }
 
     log.debug('~ makeVideo ~ result, param:', result, param)
 
     // 插入视频表
-    if(10000 === result.code){ // 成功
+    if (10000 === result.code) {
+      // 成功
       update({
         id: videoId,
         file_path: null,
@@ -139,7 +146,8 @@ export async function synthesisVideo(videoId) {
         param,
         code: param.code
       })
-    }else{ // 失败
+    } else {
+      // 失败
       update({
         id: videoId,
         file_path: null,
@@ -176,18 +184,14 @@ export async function loopPending() {
     updateStatus(video.id, 'failed', statusRes.msg)
   } else if (statusRes.code === 10000) {
     if (statusRes.data.status === 1) {
-      updateStatus(
-        video.id,
-        'pending',
-        statusRes.data.msg,
-        statusRes.data.progress,
-      )
-    }else if (statusRes.data.status === 2) { // 合成成功
+      updateStatus(video.id, 'pending', statusRes.data.msg, statusRes.data.progress)
+    } else if (statusRes.data.status === 2) {
+      // 合成成功
       // ffmpeg 获取视频时长
       let duration
-      if(process.env.NODE_ENV === 'development'){
+      if (process.env.NODE_ENV === 'development') {
         duration = 88
-      }else{
+      } else {
         const resultPath = path.join(assetPath.model, statusRes.data.result)
         duration = await getVideoDuration(resultPath)
       }
@@ -200,7 +204,6 @@ export async function loopPending() {
         file_path: statusRes.data.result,
         duration
       })
-
     } else if (statusRes.data.status === 3) {
       updateStatus(video.id, 'failed', statusRes.data.msg)
     }
@@ -229,13 +232,13 @@ function removeVideo(videoId) {
   log.debug('~ removeVideo ~ videoId:', videoId)
 
   // 删除视频
-  const videoPath = path.join(assetPath.model, video.file_path ||'')
+  const videoPath = path.join(assetPath.model, video.file_path || '')
   if (!isEmpty(video.file_path) && fs.existsSync(videoPath)) {
     fs.unlinkSync(videoPath)
   }
 
   // 删除音频
-  const audioPath = path.join(assetPath.model, video.audio_path ||'')
+  const audioPath = path.join(assetPath.model, video.audio_path || '')
   if (!isEmpty(video.audio_path) && fs.existsSync(audioPath)) {
     fs.unlinkSync(audioPath)
   }

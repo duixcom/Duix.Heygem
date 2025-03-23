@@ -16,6 +16,8 @@ import { useRouter, useRoute } from 'vue-router'
 import { reactive, watch, computed } from 'vue'
 import onIcon from '../assets/images/home/menu/onHome.svg'
 import activeIcon from '../assets/images/home/menu/active.svg'
+import cozeIcon from '../assets/images/home/menu/coze.svg'
+import cozeActiveIcon from '../assets/images/home/menu/coze-active.svg'
 import offIcon from '../assets/images/home/menu/offHome.svg'
 import { useI18n } from 'vue-i18n'
 const { t, locale } = useI18n()
@@ -29,7 +31,7 @@ const obj = [
     offIcon,
     active: true,
     path: '/home'
-  }
+  },
   /* {
       name: "账号",
       onIcon,
@@ -37,6 +39,14 @@ const obj = [
       active: true,
       path: "/account",
     }, */
+  {
+    key: 'coze.title',
+    name: t('coze.title'),
+    onIcon: cozeActiveIcon,
+    offIcon: cozeIcon,
+    active: false,
+    path: '/coze'
+  }
 ]
 const state = reactive({
   menuList: obj
@@ -95,7 +105,9 @@ const handleClick = (item) => {
       }
       .text {
         text-align: center;
-        font-family: PingFang SC, PingFang SC;
+        font-family:
+          PingFang SC,
+          PingFang SC;
         font-weight: 400;
         font-size: 12px;
         color: #9097a5;

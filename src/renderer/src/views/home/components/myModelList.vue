@@ -117,7 +117,7 @@ import { createModel } from '@renderer/components/model-create'
 import enConfig from 'tdesign-vue-next/es/locale/en_US'
 import zhConfig from 'tdesign-vue-next/es/locale/zh_CN'
 import { useI18n } from 'vue-i18n'
-const { locale,t } = useI18n()
+const { locale, t } = useI18n()
 
 import merge from 'lodash/merge'
 const globalEn = merge(enConfig, {
@@ -264,7 +264,9 @@ const tabClick = (index) => {
     li {
       cursor: pointer;
       list-style: none;
-      font-family: HarmonyOS Sans SC, HarmonyOS Sans SC;
+      font-family:
+        HarmonyOS Sans SC,
+        HarmonyOS Sans SC;
       font-weight: 500;
       font-size: 13px;
       color: #696f7a;
@@ -300,7 +302,9 @@ const tabClick = (index) => {
           display: block;
         }
         .empty-text {
-          font-family: PingFang SC, PingFang SC;
+          font-family:
+            PingFang SC,
+            PingFang SC;
           font-weight: 400;
           font-size: 12px;
           text-align: center;
@@ -332,7 +336,7 @@ const tabClick = (index) => {
           position: relative;
           .download-preview-content {
             .download-button {
-              padding:0 5px;
+              padding: 0 5px;
               height: 30px;
               cursor: pointer;
               background: #434af9;
@@ -341,7 +345,9 @@ const tabClick = (index) => {
               align-items: center;
               justify-content: center;
               border: 1px solid #434af9;
-              font-family: PingFang SC, PingFang SC;
+              font-family:
+                PingFang SC,
+                PingFang SC;
               font-weight: 500;
               font-size: 12px;
               color: #ffffff;
@@ -365,7 +371,9 @@ const tabClick = (index) => {
               cursor: pointer;
               bottom: 6px;
               z-index: 1;
-              font-family: HarmonyOS Sans SC, HarmonyOS Sans SC;
+              font-family:
+                HarmonyOS Sans SC,
+                HarmonyOS Sans SC;
               font-weight: 400;
               font-size: 10px;
               color: #ffffff;
@@ -389,7 +397,9 @@ const tabClick = (index) => {
               z-index: 1;
             }
             .detection-failed-text {
-              font-family: PingFang SC, PingFang SC;
+              font-family:
+                PingFang SC,
+                PingFang SC;
               font-weight: 500;
               font-size: 12px;
               width: 80px;
@@ -400,7 +410,9 @@ const tabClick = (index) => {
               margin-bottom: 12px;
             }
             .detection-failed-title {
-              font-family: PingFang SC, PingFang SC;
+              font-family:
+                PingFang SC,
+                PingFang SC;
               font-weight: 400;
               width: 80px;
               font-size: 12px;
@@ -418,7 +430,9 @@ const tabClick = (index) => {
               justify-content: center;
               margin-bottom: 8px;
               border-radius: 4px;
-              font-family: PingFang SC, PingFang SC;
+              font-family:
+                PingFang SC,
+                PingFang SC;
               font-weight: 500;
               font-size: 12px;
               color: #ffffff;
@@ -470,7 +484,9 @@ const tabClick = (index) => {
               height: 18px;
               background: rgba(0, 0, 0, 0.63);
               border-radius: 4px;
-              font-family: PingFang SC, PingFang SC;
+              font-family:
+                PingFang SC,
+                PingFang SC;
               font-weight: 400;
               display: flex;
               justify-content: center;
@@ -499,7 +515,9 @@ const tabClick = (index) => {
                 margin-right: 5px;
               }
               span {
-                font-family: HarmonyOS Sans SC, HarmonyOS Sans SC;
+                font-family:
+                  HarmonyOS Sans SC,
+                  HarmonyOS Sans SC;
                 font-weight: 400;
                 font-size: 12px;
                 color: #253858;
@@ -530,7 +548,9 @@ const tabClick = (index) => {
               align-items: center;
               background: rgba(6, 96, 255, 0.1);
               border-radius: 4px;
-              font-family: PingFang SC, PingFang SC;
+              font-family:
+                PingFang SC,
+                PingFang SC;
               font-weight: 500;
               font-size: 10px;
               color: #434af9;
@@ -538,7 +558,9 @@ const tabClick = (index) => {
               line-height: 12px;
             }
             .h1 {
-              font-family: HarmonyOS Sans SC, HarmonyOS Sans SC;
+              font-family:
+                HarmonyOS Sans SC,
+                HarmonyOS Sans SC;
               font-weight: 600;
               font-size: 14px;
               color: #252525;
@@ -547,7 +569,9 @@ const tabClick = (index) => {
             }
           }
           .text {
-            font-family: HarmonyOS Sans SC, HarmonyOS Sans SC;
+            font-family:
+              HarmonyOS Sans SC,
+              HarmonyOS Sans SC;
             font-weight: 400;
             font-size: 12px;
             color: rgba(37, 37, 37, 0.5);
