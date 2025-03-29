@@ -23,7 +23,7 @@ function createWindow() {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false,
       webSecurity: false, // 禁用 webSecurity
-      contextIsolation: false // 禁用上下文隔离
+      contextIsolation: false, // 禁用上下文隔离
     }
   })
   mainWindow.loadFile('index.html');

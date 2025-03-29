@@ -6,15 +6,15 @@
       <!-- 选择音色 -->
       <div class="speaker">
         <div class="speaker-content">
-          <span class="label">音色</span>
+          <span class="label">{{ $t('common.editView.speaker') }}</span>
           <t-popup trigger="click" overlayClassName="speaker-popup" placement="top-left"
             v-model:visible="state.popupVisible">
             <t-select class="selector" :value="select.speaker?.name"
-              :popupProps="{ overlayClassName: 'speaker-options' }" placeholder="选择">
+              :popupProps="{ overlayClassName: 'speaker-options' }" :placeholder="$t('common.editView.selectSpeaker')">
             </t-select>
             <template #content>
               <div class="popup-scoped">
-                <div class="side">我的</div>
+                <div class="side">{{ $t('common.editView.myVoice') }}</div>
                 <EditTextSpeaker class="wrap" v-model="select" @onSelect="action.onSelectSpeaker"
                   :popupVisible="state.popupVisible" />
               </div>
@@ -23,7 +23,7 @@
         </div>
       </div>
       <!-- 试听 -->
-      <t-button class="start" size="small" @click="action.textToAudio" :loading="state.textToAudioLoading">试听</t-button>
+      <t-button class="start" size="small" @click="action.textToAudio" :loading="state.textToAudioLoading">{{ $t('common.editView.listen') }}</t-button>
     </div>
   </div>
 </template>

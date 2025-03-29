@@ -41,35 +41,33 @@
 [**Android版本**](https://github.com/GuijiAI/duix.ai/blob/main/duix-android/dh_aigc_android/README.md) |
 [**IOS版本**](https://github.com/GuijiAI/duix.ai/blob/main/duix-ios/GJLocalDigitalDemo/GJLocalDigitalSDK.md)
 
-<img src="./README_zh.assets/1CB5196D-C989-4577-8C57-DCBA3E0871B2-51277-000008CE6CF0B87B.jpg" width="50%">
-
+<img src="./README_zh.assets/1CB5196D-C989-4577-8C57-DCBA3E0871B2-51277-000008CE6CF0B87a.jpg" width="50%">
 
 ## 【开源共创·荣耀共享】
 
 自从我们开源了Heygem，全球极客已在代码宇宙中点亮数字分身矩阵，每个commit都在重构未来！但独乐乐不如众乐乐——现在诚邀各路大神加入「开源共创计划」，让AI创意赋能每个人，一起推动中国AI舰队驶向星辰大海！
 
-1. 共创内容方向
+1.  共创内容方向
 
     分享Heygem部署教程、优化指南、实战案例等高质量视频或文章（B站、抖音、小红书、公众号、知乎等）
 
-2. 开源共创特供奖励池（真金白银奉上！）
+2.  开源共创特供奖励池（真金白银奉上！）
 
     （1）基础奖励
 
-       内容获得 20-100 点赞，获评【Heygem.ai 大师奖】及 20 元现金大师🧧
+    内容获得 20-100 点赞，获评【Heygem.ai 大师奖】及 20 元现金大师🧧
 
-       内容获得 100+ 点赞，获评【Heygem.ai 之神奖】及 50 元现金大神🧧
+    内容获得 100+ 点赞，获评【Heygem.ai 之神奖】及 50 元现金大神🧧
 
     （2）特殊成就：
 
         月度MVP将解锁开源名人堂数字勋章（永久上链）
 
-3. 参与方式
+3.  参与方式
 
-     你的创意发送至至客服小姐姐，加好友备注“姓名+999”
+    你的创意发送至至客服小姐姐，加好友备注“姓名+999”
 
 <img src="./README_zh.assets/2025-03-20_14-38-00.jpg" width="50%">
-
 
 ## 共创优秀作品展
 
@@ -86,6 +84,10 @@
 [开源免费的数字人来了，不限次数，快速克隆](http://xhslink.com/a/tX3p5V5tajh8)
 
 [AI数字人免费啦！GitHub爆火项目电脑就能跑](http://xhslink.com/a/8UT1kQ7vxjh8)
+
+[最火爆免费AI数字人，HeyGem V1.0.3，最新更新，一键整合包！口型效果超强，速度飞起，支持长视频、批量生成，8G显存可用！](https://www.bilibili.com/video/BV1SkoCYpEwh/?share_source=copy_web&vd_source=c38dcdb72a68f2a4e0b3c0f4f9a5a03c)
+
+[【HeyGem】一键包 windows直接运行 无需docker 硅基开源数字人](https://www.bilibili.com/video/BV1ZgovYGE3u/)
 
 ## 介绍
 
@@ -115,7 +117,7 @@ Heygem是一款专为Windows系统设计的全离线视频合成工具，它能�
    - docker pull guiji2025/fish-speech-ziming
    - docker pull guiji2025/heygem.ai
 
-## 如何安装
+## Windows 安装
 
 ### 前置条件
 
@@ -321,3 +323,7 @@ Heygem是一款专为Windows系统设计的全离线视频合成工具，它能�
 
 - ASR 基于 [fun-asr](https://github.com/modelscope/FunASR)
 - TTS 基于 [fish-speech-ziming](https://github.com/fishaudio/fish-speech)
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=GuijiAI/HeyGem.ai&type=Date)](https://www.star-history.com/#GuijiAI/HeyGem.ai&Date)

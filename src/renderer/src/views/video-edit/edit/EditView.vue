@@ -3,8 +3,8 @@
     <div class="edit-header">{{ $t('common.editView.headerText') }}</div>
     <t-radio-group class="edit-tabs" variant="default-filled" size="large" v-model="state.activeTab"
       @change="action.onChangeTab">
-      <t-radio-button :value="EDIT_TABS.TEXT">文本合成</t-radio-button>
-      <t-radio-button :value="EDIT_TABS.AUDIO">音频合成</t-radio-button>
+      <t-radio-button :value="EDIT_TABS.TEXT">{{ $t('common.editView.text') }}</t-radio-button>
+      <t-radio-button :value="EDIT_TABS.AUDIO">{{ $t('common.editView.audio') }}</t-radio-button>
     </t-radio-group>
     <div class="edit-body edit-body-text" v-show="getter.isTextTab.value">
       <EditText v-model="select" class="content" :listener="listener" />

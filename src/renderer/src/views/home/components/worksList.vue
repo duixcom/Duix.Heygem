@@ -33,7 +33,7 @@
                 {{ item.duration + '' ? millisecondsToTime(item.duration * 1000) : '00:00' }}
               </div>
               <div v-if="item.status === 'success'" class="works-video">
-                <video :src="item.file_path"></video>
+                 <video :src="localUrl.addFileProtocol(item.file_path)"></video>
               </div>
               <!--  <video class="works-video" src="../../../assets/images/home/aa.mp4"></video> -->
               <img
@@ -169,6 +169,7 @@ import enConfig from 'tdesign-vue-next/es/locale/en_US'
 import zhConfig from 'tdesign-vue-next/es/locale/zh_CN'
 import { useI18n } from 'vue-i18n'
 const { locale, t } = useI18n()
+import { localUrl } from '@renderer/utils'
 
 import merge from 'lodash/merge'
 const globalEn = merge(enConfig, {

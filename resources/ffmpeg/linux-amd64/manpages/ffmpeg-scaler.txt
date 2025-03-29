@@ -1,0 +1,156 @@
+FFMPEG-SCALER(1)					      FFMPEG-SCALER(1)
+
+NAME
+       ffmpeg-scaler - FFmpeg video scaling and pixel format converter
+
+DESCRIPTION
+       The FFmpeg rescaler provides a high-level interface to the libswscale
+       library image conversion utilities. In particular it allows one to
+       perform image rescaling and pixel format conversion.
+
+SCALER OPTIONS
+       The video scaler supports the following named options.
+
+       Options may be set by specifying -option value in the FFmpeg tools,
+       with a few API-only exceptions noted below.  For programmatic use, they
+       can be set explicitly in the "SwsContext" options or through the
+       libavutil/opt.h API.
+
+       sws_flags
+	   Set the scaler flags. This is also used to set the scaling
+	   algorithm. Only a single algorithm should be selected. Default
+	   value is bicubic.
+
+	   It accepts the following values:
+
+	   fast_bilinear
+	       Select fast bilinear scaling algorithm.
+
+	   bilinear
+	       Select bilinear scaling algorithm.
+
+	   bicubic
+	       Select bicubic scaling algorithm.
+
+	   experimental
+	       Select experimental scaling algorithm.
+
+	   neighbor
+	       Select nearest neighbor rescaling algorithm.
+
+	   area
+	       Select averaging area rescaling algorithm.
+
+	   bicublin
+	       Select bicubic scaling algorithm for the luma component,
+	       bilinear for chroma components.
+
+	   gauss
+	       Select Gaussian rescaling algorithm.
+
+	   sinc
+	       Select sinc rescaling algorithm.
+
+	   lanczos
+	       Select Lanczos rescaling algorithm. The default width (alpha)
+	       is 3 and can be changed by setting "param0".
+
+	   spline
+	       Select natural bicubic spline rescaling algorithm.
+
+	   print_info
+	       Enable printing/debug logging.
+
+	   accurate_rnd
+	       Enable accurate rounding.
+
+	   full_chroma_int
+	       Enable full chroma interpolation.
+
+	   full_chroma_inp
+	       Select full chroma input.
+
+	   bitexact
+	       Enable bitexact output.
+
+       srcw (API only)
+	   Set source width.
+
+       srch (API only)
+	   Set source height.
+
+       dstw (API only)
+	   Set destination width.
+
+       dsth (API only)
+	   Set destination height.
+
+       src_format (API only)
+	   Set source pixel format (must be expressed as an integer).
+
+       dst_format (API only)
+	   Set destination pixel format (must be expressed as an integer).
+
+       src_range (boolean)
+	   If value is set to 1, indicates source is full range. Default value
+	   is 0, which indicates source is limited range.
+
+       dst_range (boolean)
+	   If value is set to 1, enable full range for destination. Default
+	   value is 0, which enables limited range.
+
+       param0, param1
+	   Set scaling algorithm parameters. The specified values are specific
+	   of some scaling algorithms and ignored by others. The specified
+	   values are floating point number values.
+
+       sws_dither
+	   Set the dithering algorithm. Accepts one of the following values.
+	   Default value is auto.
+
+	   auto
+	       automatic choice
+
+	   none
+	       no dithering
+
+	   bayer
+	       bayer dither
+
+	   ed  error diffusion dither
+
+	   a_dither
+	       arithmetic dither, based using addition
+
+	   x_dither
+	       arithmetic dither, based using xor (more random/less apparent
+	       patterning that a_dither).
+
+       alphablend
+	   Set the alpha blending to use when the input has alpha but the
+	   output does not.  Default value is none.
+
+	   uniform_color
+	       Blend onto a uniform background color
+
+	   checkerboard
+	       Blend onto a checkerboard
+
+	   none
+	       No blending
+
+SEE ALSO
+       ffmpeg(1), ffplay(1), ffprobe(1), libswscale(3)
+
+AUTHORS
+       The FFmpeg developers.
+
+       For details about the authorship, see the Git history of the project
+       (https://git.ffmpeg.org/ffmpeg), e.g. by typing the command git log in
+       the FFmpeg source directory, or browsing the online repository at
+       <https://git.ffmpeg.org/ffmpeg>.
+
+       Maintainers for the specific components are listed in the file
+       MAINTAINERS in the source code tree.
+
+							      FFMPEG-SCALER(1)

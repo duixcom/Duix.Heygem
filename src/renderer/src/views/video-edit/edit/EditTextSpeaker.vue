@@ -1,7 +1,8 @@
 <template>
   <div class="list">
     <!-- 搜索框 -->
-    <t-input class="list-search" v-model="state.search" placeholder="搜索音色" @change="action.searchList">
+    <t-input class="list-search" v-model="state.search" :placeholder="$t('common.editView.searchSpeaker')"
+      @change="action.searchList">
       <template #prefix-icon>
         <SearchIcon />
       </template>

@@ -36,10 +36,24 @@ dmg:
 linux:
   target:
     - AppImage
-    - snap
-    - deb
+    # - snap
+    # - deb
   maintainer: electronjs.org
   category: Utility
+  icon: build/icon.png
+  desktop:
+    Name: ${productName}
+    Comment: ${productName}
+    GenericName: ${productName}
+    executableName: ${productName}
+    Icon: build/icon.png
+    Terminal: false
+    Type: Application
+    Categories: Utility
+    Keywords:
+      - ${productName}
+      - 数字人
+      - 视频生成
 appImage:
   artifactName: ${productName}-${version}.${ext}
 npmRebuild: false

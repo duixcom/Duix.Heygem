@@ -2,33 +2,66 @@ import ffmpeg from 'fluent-ffmpeg'
 import path from 'path'
 import log from '../logger.js'
 
-const ffmpegPathValue =
-  process.env.NODE_ENV === 'development'
-    ? path.join(__dirname, '../../resources/ffmpeg/bin/ffmpeg.exe')
-    : path.join(
-        process.resourcesPath,
-        'app.asar.unpacked',
-        'resources',
-        'ffmpeg',
-        'bin',
-        'ffmpeg.exe'
-      )
-log.info('FFmpeg path:', ffmpegPathValue)
-ffmpeg.setFfmpegPath(ffmpegPathValue)
-
-const ffprobePathValue =
-  process.env.NODE_ENV === 'development'
-    ? path.join(__dirname, '../../resources/ffmpeg/bin/ffprobe.exe')
-    : path.join(
+function initFFmpeg() {
+  const ffmpegPath = {
+    'development-win32': path.join(__dirname, '../../resources/ffmpeg/win-amd64/bin/ffmpeg.exe'),
+    'development-linux': path.join(__dirname, '../../resources/ffmpeg/linux-amd64/ffmpeg'),
+    'production-win32': path.join(
       process.resourcesPath,
       'app.asar.unpacked',
       'resources',
       'ffmpeg',
+      'win-amd64',
+      'bin',
+      'ffmpeg.exe'
+    ),
+    'production-linux': path.join(
+      process.resourcesPath,
+      'app.asar.unpacked',
+      'resources',
+      'ffmpeg',
+      'linux-amd64',
+      'ffmpeg'
+    )
+  }
+
+  if(process.env.NODE_ENV === undefined){
+    process.env.NODE_ENV = 'production'
+  }
+
+  const ffmpegPathValue = ffmpegPath[`${process.env.NODE_ENV}-${process.platform}`]
+  log.debug('ENV:', `${process.env.NODE_ENV}-${process.platform}`)
+  log.info('FFmpeg path:', ffmpegPathValue)
+  ffmpeg.setFfmpegPath(ffmpegPathValue)
+
+  const ffprobePath = {
+    'development-win32': path.join(__dirname, '../../resources/ffmpeg/win-amd64/bin/ffprobe.exe'),
+    'development-linux': path.join(__dirname, '../../resources/ffmpeg/linux-amd64/ffprobe'),
+    'production-win32': path.join(
+      process.resourcesPath,
+      'app.asar.unpacked',
+      'resources',
+      'ffmpeg',
+      'win-amd64',
       'bin',
       'ffprobe.exe'
+    ),
+    'production-linux': path.join(
+      process.resourcesPath,
+      'app.asar.unpacked',
+      'resources',
+      'ffmpeg',
+      'linux-amd64',
+      'ffprobe'
     )
-log.info('FFprobe path:', ffprobePathValue)
-ffmpeg.setFfprobePath(ffprobePathValue)
+  }
+
+  const ffprobePathValue = ffprobePath[`${process.env.NODE_ENV}-${process.platform}`]
+  log.info('FFprobe path:', ffprobePathValue)
+  ffmpeg.setFfprobePath(ffprobePathValue)
+}
+
+initFFmpeg()
 
 export function extractAudio(videoPath, audioPath) {
   return new Promise((resolve, reject) => {
