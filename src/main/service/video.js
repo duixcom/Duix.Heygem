@@ -33,7 +33,7 @@ function page({ page, pageSize, name = '' }) {
   const list = selectPage({ page, pageSize, name }).map((video) => {
     video = {
       ...video,
-      file_path: video.file_path ? path.join(assetPath.model, video.file_path) : video.file_path
+      file_path: video.file_path ? path.join(assetPath().model, video.file_path) : video.file_path
     }
 
     if(video.status === 'waiting'){
@@ -52,7 +52,7 @@ function findVideo(videoId) {
   const video = selectVideoByID(videoId)
   return {
     ...video,
-    file_path: video.file_path ? path.join(assetPath.model, video.file_path) : video.file_path
+    file_path: video.file_path ? path.join(assetPath().model, video.file_path) : video.file_path
   }
 }
 
@@ -188,7 +188,7 @@ export async function loopPending() {
       if(process.env.NODE_ENV === 'development'){
         duration = 88
       }else{
-        const resultPath = path.join(assetPath.model, statusRes.data.result)
+        const resultPath = path.join(assetPath().model, statusRes.data.result)
         duration = await getVideoDuration(resultPath)
       }
 
@@ -229,13 +229,13 @@ function removeVideo(videoId) {
   log.debug('~ removeVideo ~ videoId:', videoId)
 
   // 删除视频
-  const videoPath = path.join(assetPath.model, video.file_path ||'')
+  const videoPath = path.join(assetPath().model, video.file_path ||'')
   if (!isEmpty(video.file_path) && fs.existsSync(videoPath)) {
     fs.unlinkSync(videoPath)
   }
 
   // 删除音频
-  const audioPath = path.join(assetPath.model, video.audio_path ||'')
+  const audioPath = path.join(assetPath().model, video.audio_path ||'')
   if (!isEmpty(video.audio_path) && fs.existsSync(audioPath)) {
     fs.unlinkSync(audioPath)
   }
@@ -246,7 +246,7 @@ function removeVideo(videoId) {
 
 function exportVideo(videoId, outputPath) {
   const video = selectVideoByID(videoId)
-  const filePath = path.join(assetPath.model, video.file_path)
+  const filePath = path.join(assetPath().model, video.file_path)
   fs.copyFileSync(filePath, outputPath)
 }
 

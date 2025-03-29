@@ -17,28 +17,29 @@ const MODEL_NAME = 'model'
  * @returns
  */
 function addModel(modelName, videoPath) {
-  if (!fs.existsSync(assetPath.model)) {
-    fs.mkdirSync(assetPath.model, {
+  if (!fs.existsSync(assetPath().model)) {
+    fs.mkdirSync(assetPath().model, {
       recursive: true
     })
   }
+  console.log('modelPath', assetPath.model)
   // copy video to model video path
   const extname = path.extname(videoPath)
   const modelFileName = dayjs().format('YYYYMMDDHHmmssSSS') + extname
-  const modelPath = path.join(assetPath.model, modelFileName)
+  const modelPath = path.join(assetPath().model, modelFileName)
 
   fs.copyFileSync(videoPath, modelPath)
 
   // 用ffmpeg分离音频
-  if (!fs.existsSync(assetPath.ttsTrain)) {
-    fs.mkdirSync(assetPath.ttsTrain, {
+  if (!fs.existsSync(assetPath().ttsTrain)) {
+    fs.mkdirSync(assetPath().ttsTrain, {
       recursive: true
     })
   }
-  const audioPath = path.join(assetPath.ttsTrain, modelFileName.replace(extname, '.wav'))
+  const audioPath = path.join(assetPath().ttsTrain, modelFileName.replace(extname, '.wav'))
   return extractAudio(modelPath, audioPath).then(() => {
     // 训练语音模型
-    const relativeAudioPath = path.relative(assetPath.ttsRoot, audioPath)
+    const relativeAudioPath = path.relative(assetPath().ttsRoot, audioPath)
     if (process.env.NODE_ENV === 'development') {
       // TODO 写死调试
       return trainVoice('origin_audio/test.wav', 'zh')
@@ -47,8 +48,8 @@ function addModel(modelName, videoPath) {
     }
   }).then((voiceId)=>{
     // 插入模特信息
-    const relativeModelPath = path.relative(assetPath.model, modelPath)
-    const relativeAudioPath = path.relative(assetPath.ttsRoot, audioPath)
+    const relativeModelPath = path.relative(assetPath().model, modelPath)
+    const relativeAudioPath = path.relative(assetPath().ttsRoot, audioPath)
 
     // insert model info to db
     const id = insert({ modelName, videoPath: relativeModelPath, audioPath: relativeAudioPath, voiceId })
@@ -57,13 +58,14 @@ function addModel(modelName, videoPath) {
 }
 
 function page({ page, pageSize, name = '' }) {
+  console.log('~ page ~:', assetPath())
   const total = count(name)
   return {
     total,
     list: selectPage({ page, pageSize, name }).map((model) => ({
       ...model,
-      video_path: path.join(assetPath.model, model.video_path),
-      audio_path: path.join(assetPath.ttsRoot, model.audio_path)
+      video_path: path.join(assetPath().model, model.video_path),
+      audio_path: path.join(assetPath().ttsRoot, model.audio_path)
     }))
   }
 }
@@ -72,8 +74,8 @@ function findModel(modelId) {
   const model = selectByID(modelId)
   return {
     ...model,
-    video_path: path.join(assetPath.model, model.video_path),
-    audio_path: path.join(assetPath.ttsRoot, model.audio_path)
+    video_path: path.join(assetPath().model, model.video_path),
+    audio_path: path.join(assetPath().ttsRoot, model.audio_path)
   }
 }
 
@@ -82,13 +84,13 @@ function removeModel(modelId) {
   log.debug('~ removeModel ~ modelId:', modelId)
 
   // 删除视频
-  const videoPath = path.join(assetPath.model, model.video_path ||'')
+  const videoPath = path.join(assetPath().model, model.video_path ||'')
   if (!isEmpty(model.video_path) && fs.existsSync(videoPath)) {
     fs.unlinkSync(videoPath)
   }
 
   // 删除音频
-  const audioPath = path.join(assetPath.ttsRoot, model.audio_path ||'')
+  const audioPath = path.join(assetPath().ttsRoot, model.audio_path ||'')
   if (!isEmpty(model.audio_path) && fs.existsSync(audioPath)) {
     fs.unlinkSync(audioPath)
   }

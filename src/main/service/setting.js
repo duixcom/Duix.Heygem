@@ -44,6 +44,42 @@ export function getAllSettings() {
 // 默认设置数据
 const DEFAULT_SETTINGS = [
   {
+    group_name: SETTING_GROUPS.SYSTEM,
+    key: 'face2faceUrl',
+    value: 'http://127.0.0.1:8383/easy',
+    label: 'Face2Face 服务地址'
+  },
+  {
+    group_name: SETTING_GROUPS.SYSTEM,
+    key: 'ttsUrl',
+    value: 'http://127.0.0.1:18180',
+    label: 'TTS 服务地址'
+  },
+  {
+    group_name: SETTING_GROUPS.SYSTEM,
+    key: 'modelPath',
+    value: '',
+    label: '模型路径'
+  },
+  {
+    group_name: SETTING_GROUPS.SYSTEM,
+    key: 'ttsProductPath',
+    value: '',
+    label: 'TTS 产物路径'
+  },
+  {
+    group_name: SETTING_GROUPS.SYSTEM,
+    key: 'ttsRootPath',
+    value: '',
+    label: 'TTS 根路径'
+  },
+  {
+    group_name: SETTING_GROUPS.SYSTEM,
+    key: 'ttsTrainPath',
+    value: '',
+    label: 'TTS 训练路径'
+  },
+  {
     group_name: SETTING_GROUPS.MINION,
     key: 'enabled',
     value: 'false',
@@ -72,6 +108,12 @@ const DEFAULT_SETTINGS = [
     key: 'secretKey',
     value: '',
     label: '秘密密钥'
+  },
+  {
+    group_name: SETTING_GROUPS.MINION,
+    key: 'bucket',
+    value: '',
+    label: '存储桶'
   }
 ]
 
@@ -85,6 +127,8 @@ export function init() {
   }
 
   ipcMain.handle(MODEL_NAME + '/save', (event, ...args) => {
+    
+  console.log('saveSetting args', ...args)
     return saveSetting(...args)
   })
   ipcMain.handle(MODEL_NAME + '/getByGroup', (event, ...args) => {

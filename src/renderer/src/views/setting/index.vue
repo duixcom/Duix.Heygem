@@ -22,7 +22,7 @@
                         <t-button theme="primary" @click="showAddModal">新增配置</t-button>
                     </template>
 
-                    <t-table :columns="columns" :data="configList" :pagination="false" :bordered="true">
+                    <t-table :columns="columns" :data="configList" :bordered="true" row-key="id">
                         <template #operation="slotProps">
                             <t-space>
                                 <t-link theme="primary" @click="handleEdit(slotProps.row)">
@@ -146,11 +146,12 @@ const handleEdit = (record) => {
 const handleModalOk = async () => {
     try {
         await formRef.value.validate()
-        await saveSetting(formState.value)
+        await saveSetting({...formState.value})
         MessagePlugin.success('保存成功')
         modalVisible.value = false
         loadData()
     } catch (error) {
+        console.error(error)
         MessagePlugin.error('保存失败')
     }
 }
