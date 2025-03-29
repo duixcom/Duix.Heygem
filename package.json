@@ -21,6 +21,8 @@
     "@electron-toolkit/utils": "^3.0.0",
     "axios": "^1.7.7",
     "better-sqlite3": "^11.5.0",
+    "block-stream2": "^2.1.0",
+    "browser-or-node": "^3.0.0",
     "dayjs": "^1.11.13",
     "electron-log": "^5.2.2",
     "electron-updater": "^6.1.7",
@@ -28,10 +30,12 @@
     "lodash-es": "^4.17.21",
     "minio": "^8.0.5",
     "pinia": "^2.2.6",
+    "query-string": "^9.1.1",
     "tdesign-icons-vue-next": "^0.3.3",
     "tdesign-vue-next": "^1.10.3",
     "vue-i18n": "^10.0.5",
-    "vue-router": "^4.4.5"
+    "vue-router": "^4.4.5",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config": "^1.0.2",

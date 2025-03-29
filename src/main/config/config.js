@@ -23,32 +23,30 @@ const defaultAssetPath = {
     : path.join(os.homedir(), 'heygem_data', 'voice', 'data'), // TTS服务根目录
   ttsTrain: isWin
     ? path.join('D:', 'heygem_data', 'voice', 'data', 'origin_audio')
-    : path.join(os.homedir(), 'heygem_data', 'voice', 'data', 'origin_audio') // TTS 训练产物
+    : path.join(os.homedir(), 'heygem_data', 'voice', 'data', 'origin_audio'), // TTS 训练产物
+  isLite: false // 是否是lite版本
 }
-
-
 
 function loadConfig() {
   let _serviceUrl = { ...defaultServiceUrl }
-    let _assetPath = { ...defaultAssetPath }
-    const systemSetting = getSettingByGroup('system')
-    if (systemSetting) {
-      systemSetting.forEach((item) => {
-        console.log('item.value', item.value, item.key, _serviceUrl.hasOwnProperty(item.key))
-        const k = item.key.replace('Url', '').replace('Path', '')
-        if(_serviceUrl.hasOwnProperty(k) && item.value) {
-          _serviceUrl[k] = item.value
-        }
-        if(_assetPath.hasOwnProperty(k) && item.value) {
-          _assetPath[k] = item.value
-        }
-      })
-    }
+  let _assetPath = { ...defaultAssetPath }
+  const systemSetting = getSettingByGroup('system')
+  if (systemSetting) {
+    systemSetting.forEach((item) => {
+      const k = item.key.replace('Url', '').replace('Path', '')
+      if (_serviceUrl.hasOwnProperty(k) && item.value) {
+        _serviceUrl[k] = item.value
+      }
+      if (_assetPath.hasOwnProperty(k) && item.value) {
+        _assetPath[k] = item.value
+      }
+    })
+  }
 
-    return {
-      _serviceUrl,
-      _assetPath
-    }
+  return {
+    _serviceUrl,
+    _assetPath
+  }
 }
 
 export function serviceUrl() {
@@ -56,5 +54,5 @@ export function serviceUrl() {
 }
 
 export function assetPath() {
-  return  loadConfig()._assetPath
+  return loadConfig()._assetPath
 }
