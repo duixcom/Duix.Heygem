@@ -22,7 +22,6 @@ function addModel(modelName, videoPath) {
       recursive: true
     })
   }
-  console.log('modelPath', assetPath.model)
   // copy video to model video path
   const extname = path.extname(videoPath)
   const modelFileName = dayjs().format('YYYYMMDDHHmmssSSS') + extname
@@ -40,6 +39,12 @@ function addModel(modelName, videoPath) {
   return extractAudio(modelPath, audioPath).then(() => {
     // 训练语音模型
     const relativeAudioPath = path.relative(assetPath().ttsRoot, audioPath)
+    
+    // 如果是 Lite 版本，不训练语音模型，直接返回0
+    if(assetPath().isLite) {
+      return 0
+    }
+
     if (process.env.NODE_ENV === 'development') {
       // TODO 写死调试
       return trainVoice('origin_audio/test.wav', 'zh')
