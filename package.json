@@ -47,5 +47,13 @@
     "raw-loader": "^4.0.2",
     "vite": "^5.3.5",
     "vue": "^3.5.13"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3",
+      "electron",
+      "esbuild",
+      "vue-demi"
+    ]
   }
 }
