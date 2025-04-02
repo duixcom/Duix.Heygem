@@ -1,5 +1,13 @@
 # Heygem - Open Source Alternative to Heygen [【切换中文】](./README_zh.md)
 
+## Version Update Notice
+
+**The Lite version is officially released, you can download it [here](https://github.com/GuijiAI/HeyGem.ai/releases/tag/v1.0.3-Lite). If you want to experience the standard version (original version), you can click [here](https://github.com/GuijiAI/HeyGem.ai/releases/tag/v1.0.3) to download**
+
+1. The Lite version can reduce two services heygem-tts / heygem-asr, reducing the installation size from 70GB to 13.5GB
+2. The Lite version customizes avatars and video generation faster
+3. The Lite version does not have text-to-video functionality, it can only generate videos by uploading audio
+
 ## Important Notice to Developer Partners
 
 **Dear Heygem Open Source Community Members:**
@@ -33,7 +41,7 @@ We always adhere to the open source spirit, and the launch of the API service ai
 [**Android Version**](https://github.com/GuijiAI/duix.ai/blob/main/duix-android/dh_aigc_android/README.md) |
 [**IOS Version**](https://github.com/GuijiAI/duix.ai/blob/main/duix-ios/GJLocalDigitalDemo/GJLocalDigitalSDK.md)
 
-<img src="./README_zh.assets/1CB5196D-C989-4577-8C57-DCBA3E0871B2-51277-000008CE6CF0B87B.jpg" width="50%">
+<img src="./README_zh.assets/cb10263a14cc826e22c2be4bcae01a89.jpg" width="50%">
 
 ## Open Source Co-Creation · Shared Glory
 
@@ -78,6 +86,10 @@ Since we open-sourced Heygem, global geeks have illuminated the digital avatar m
 
 [AI Digital Humans Are Free! GitHub's Hot Project Can Run on Your Computer](http://xhslink.com/a/8UT1kQ7vxjh8)
 
+[The Most Popular Free AI Digital Human, HeyGem V1.0.3, Latest Update, One-Click Integration Package! Super Strong Lip-Sync Effect, Speed Up, Supports Long Videos, Batch Generation, 8G Video Memory Available!](https://www.bilibili.com/video/BV1SkoCYpEwh/?share_source=copy_web&vd_source=c38dcdb72a68f2a4e0b3c0f4f9a5a03c)
+
+[**HeyGem One-Click Package Windows Direct Run Without Docker Silicon-Based Open Source Digital Human**](https://www.bilibili.com/video/BV1ZgovYGE3u/)
+
 ## Introduction
 
 <img src="README_zh.assets/image-20250304114114272.png">
@@ -106,7 +118,7 @@ Heygem is a fully offline video synthesis tool designed for Windows systems that
    - docker pull guiji2025/fish-speech-ziming
    - docker pull guiji2025/heygem.ai
 
-## Installation
+## Windows Installation
 
 ### Prerequisites
 
@@ -168,7 +180,7 @@ Heygem is a fully offline video synthesis tool designed for Windows systems that
 Installation using Docker, docker-compose as follows:
 
 1. The `docker-compose.yml` file is in the `/deploy` directory.
-2. Execute `docker-compose up -d` in the `/deploy` directory
+2. Execute `docker-compose up -d` in the `/deploy` directory, <u>if you want to use the lite version, execute `docker-compose -f docker-compose-lite.yml up -d`</u>
 3. Wait patiently (about half an hour, speed depends on network), download will consume about 70GB of traffic, make sure to use WiFi
 4. When you see three services in Docker, it indicates success
 
@@ -178,6 +190,24 @@ Installation using Docker, docker-compose as follows:
 
 1. Directly download the [officially built installation package](https://github.com/GuijiAI/HeyGem.ai/releases)
 2. Double-click `HeyGem-x.x.x-setup.exe` to install
+
+## Ubuntu 22.04 Installation
+
+### Recommended Configuration
+
+- CPU: 13th Gen Intel Core i5-13400F
+- Memory: 32GB or more (required)
+- Graphics Card: RTX-4070 (ensure you have an NVIDIA graphics card and the driver is correctly installed)
+- Hard Disk: More than 100GB of free space
+
+### Install Docker
+
+> First, check if Docker is installed using `docker --version`. If it is installed, skip the following steps.
+
+1. Directly download the [officially built installation package](https://github.com/GuijiAI/HeyGem.ai/releases) for the Linux version
+2. Double-click `HeyGem-x.x.x.AppImage` to launch, no installation required
+
+  > Reminder: On Ubuntu systems, if you are using the `root` user to access the desktop, double-clicking `HeyGem-x.x.x.AppImage` may not work. You need to execute `./HeyGem-x.x.x.AppImage --no-sandbox` in the terminal, adding the `--no-sandbox` parameter.
 
 ## Open APIs
 
@@ -308,3 +338,7 @@ Interface: `http://127.0.0.1:18180/v1/invoke`
 
 - ASR based on [fun-asr](https://github.com/modelscope/FunASR)
 - TTS based on [fish-speech-ziming](https://github.com/fishaudio/fish-speech)
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=GuijiAI/HeyGem.ai&type=Date)](https://www.star-history.com/#GuijiAI/HeyGem.ai&Date)

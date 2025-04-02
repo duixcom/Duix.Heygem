@@ -7,7 +7,7 @@
 
     <!-- 已上传 -->
     <div class="upload-box --uploaded" v-else-if="uploadInfo.videoPath" @click="action.upload">
-      <video class="video" :src="uploadInfo.videoPath" controls />
+      <video class="video" :src="localUrl.addFileProtocol(uploadInfo.videoPath)" controls />
     </div>
 
     <!-- 未上传 -->
@@ -25,7 +25,7 @@ import { reactive } from 'vue'
 import ImageShotVideo from '@renderer/assets/images/create-model/image-shot.png'
 import { Client } from '@renderer/client'
 import { MessagePlugin } from 'tdesign-vue-next'
-
+import { localUrl } from '@renderer/utils'
 
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()

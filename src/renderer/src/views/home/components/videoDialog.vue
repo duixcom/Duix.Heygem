@@ -14,7 +14,7 @@
           ref="videoPlayer"
           class="video-look"
           autoplay
-          :src="props.videoUrl"
+          :src="localUrl.addFileProtocol(props.videoUrl)"       
           controls
         ></video>
       </div>
@@ -23,6 +23,7 @@
 </template>
 <script setup>
 import { ref } from "vue";
+import { localUrl } from '@renderer/utils'
 const emit = defineEmits(["cancel"]);
 const props = defineProps({
   showVideoDialog: Boolean,

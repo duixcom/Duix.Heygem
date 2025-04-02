@@ -29,6 +29,7 @@ export default {
   },
   async getVideoInfo(app, videoPath) {
     return new Promise((resolve) => {
+      videoPath = videoPath.replace(/^file:\/\//, '')
       ffmpeg(videoPath).ffprobe((err, data) => {
         if (err) {
           resolve({ isOK: false, msg: err.toString() })
@@ -42,6 +43,7 @@ export default {
   },
 
   async getAudioInfo(app, audioPath) {
+    audioPath = audioPath.replace(/^file:\/\//, '')
     return new Promise((resolve) => {
       ffmpeg(audioPath).ffprobe((err, data) => {
         if (err) {

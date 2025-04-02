@@ -21,7 +21,7 @@
         <div class="model-list">
           <div class="model-list__item" v-for="model in data.modelList" :model-id="model.id" :key="model.id"
             @click="action.selectModel(model)" :class="{ '--active': data.model?.id === model.id }">
-            <video class="video" :src="model.video_path" />
+            <video class="video" :src=localUrl.addFileProtocol(model.video_path) />
             <div class="name" :title="model.name">{{ model.name }}</div>
           </div>
         </div>
@@ -35,6 +35,7 @@ import ModelPng from '@renderer/assets/images/video-edit/create-model.png'
 import { SearchIcon } from 'tdesign-icons-vue-next'
 import { createModel } from '@renderer/components/model-create'
 import { useRouter } from 'vue-router'
+import { localUrl } from '@renderer/utils'
 
 const router = useRouter()
 

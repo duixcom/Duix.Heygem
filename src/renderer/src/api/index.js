@@ -1,4 +1,4 @@
-import { localUrl } from '@renderer/utils'
+
 
 export function videoPage({ page = 1, pageSize = 1, name = '' }) {
   return window.electron.ipcRenderer.invoke('video/page', { page, pageSize, name })
@@ -13,7 +13,6 @@ export function removeVideo(id) {
 }
 
 export function saveVideo(video) {
-  // id, model_id, name, text_content, voice_id, audio_path
   return window.electron.ipcRenderer.invoke('video/save', video)
 }
 
@@ -35,6 +34,7 @@ export function countVideo(name = '') {
 
 export function modelPage({ page = 1, pageSize = 1, name = '' }) {
   return window.electron.ipcRenderer.invoke('model/page', { page, pageSize, name })
+  
 }
 
 export function findModel(id) {
@@ -42,7 +42,6 @@ export function findModel(id) {
 }
 
 export function addModel({ name, videoPath }) {
-  videoPath = localUrl.delFileProtocol(videoPath)
   return window.electron.ipcRenderer.invoke('model/addModel', name, videoPath)
 }
 

@@ -3,9 +3,9 @@ networks:
     driver: bridge
 
 services:
-  heygem-f2f:
+  heygem-gen-video:
     image: guiji2025/heygem.ai
-    container_name: heygem-f2f
+    container_name: heygem-gen-video
     restart: always
     runtime: nvidia
     privileged: true

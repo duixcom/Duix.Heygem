@@ -1,5 +1,4 @@
 
-
 export const Client = {
   file: {
     ...window.client.file,

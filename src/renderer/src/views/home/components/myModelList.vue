@@ -41,7 +41,7 @@
           <div class="img-video comme">
             <div class="img-video-content">
               <div class="duration" style="display: none">00:30</div>
-              <video class="model-video" :src="item.video_path"></video>
+              <video class="model-video" :src="localUrl.addFileProtocol(item.video_path)"></video> 
               <div class="fail" style="display: none">
                 <div class="fail-line"></div>
                 <span> {{ $t('common.myModelList.inProgressText') }}</span>
@@ -118,6 +118,7 @@ import enConfig from 'tdesign-vue-next/es/locale/en_US'
 import zhConfig from 'tdesign-vue-next/es/locale/zh_CN'
 import { useI18n } from 'vue-i18n'
 const { locale,t } = useI18n()
+import { localUrl } from '@renderer/utils'
 
 import merge from 'lodash/merge'
 const globalEn = merge(enConfig, {
@@ -165,7 +166,6 @@ const modelPageAJax = async () => {
       pageSize: state.pageSize,
       name: state.formData.name
     })
-
     if (res) {
       const { total, list } = res
       if (list) {

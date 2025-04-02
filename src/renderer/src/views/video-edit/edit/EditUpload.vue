@@ -2,13 +2,14 @@
   <div class="upload">
     <div class="upload-uploaded" v-if="select.uploaded">
       <div class="info">
-        <div class="tag">上传</div>
+        <div class="tag">{{ $t('common.editView.upload') }}</div>
         <div class="name">{{ select.uploaded.name }}</div>
       </div>
       <div class="control">
         <div class="duration">{{ select.uploaded.duration }}</div>
-        <t-button class="start" size="small" @click="action.listen">试听</t-button>
-        <img class="delete" src="@renderer/assets/images/icons/icon-del.png" @click="action.deleteAudio" title="删除" />
+        <t-button class="start" size="small" @click="action.listen">{{ $t('common.editView.listen') }}</t-button>
+        <img class="delete" src="@renderer/assets/images/icons/icon-del.png" @click="action.deleteAudio"
+          :title="$t('common.editView.delete')" />
       </div>
     </div>
     <div class="upload-box" v-else>
@@ -16,10 +17,10 @@
         <template #icon>
           <AddIcon />
         </template>
-        添加音频</t-button>
+        {{ $t('common.editView.addAudio') }}</t-button>
       <div class="tip">
         <img class="icon" src="@renderer/assets/images/icons/icon-alert.png" />
-        <span>单次最多上传1个录音文件；支持mp3、wav、flac、m4a文件，单个录音时长小于30分钟，请上传纯干音文件，背景音、噪音会影响视频合成效果哦～</span>
+        <span>{{ $t('common.editView.tip') }}</span>
       </div>
     </div>
 
@@ -69,11 +70,11 @@ const action = {
   },
   check(audioInfo) {
     if (!audioInfo.isOK) {
-      MessagePlugin.error(audioInfo.msg || '音频上传失败')
+      MessagePlugin.error(audioInfo.msg || $t('common.editView.uploadError'))
       return false
     }
     if (audioInfo.duration > 60 * 30) {
-      MessagePlugin.error('音频时长不能超过30分钟')
+      MessagePlugin.error($t('common.editView.durationError'))
       return false
     }
     return true
@@ -128,12 +129,11 @@ const action = {
       color: #FF932F;
       line-height: 16px;
       display: flex;
-      align-items: center;
 
       .icon {
         width: 12px;
         height: 12px;
-        margin-right: 8px;
+        margin: 4px 8px 0 0;
       }
     }
   }

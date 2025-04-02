@@ -112,7 +112,20 @@ export const commonZh = {
     headerText: '画面预览'
   },
   editView: {
-    headerText: '视频内容'
+    headerText: '视频内容',
+    text: '文本合成',
+    audio: '音频合成',
+    addAudio: '添加音频',
+    tip: '单次最多上传1个录音文件；支持mp3、wav、flac、m4a文件，单个录音时长小于30分钟，请上传纯干音文件，背景音、噪音会影响视频合成效果哦～',
+    listen: '试听',
+    delete: '删除',
+    upload: '上传',
+    uploadError: '音频上传失败',
+    durationError: '音频时长不能超过30分钟',
+    myVoice: '我的',
+    selectSpeaker: '选择',
+    speaker: '音色',
+    searchSpeaker: '搜索音色'
   },
   headerView: {
     headerBackText: '返回',
@@ -239,7 +252,20 @@ export const commonEn = {
     headerText: 'Preview'
   },
   editView: {
-    headerText: 'Content'
+    headerText: 'Content',
+    text: 'Text Synthesis',
+    audio: 'Audio Synthesis',
+    addAudio: 'Add Audio',
+    tip: 'You can upload up to 1 audio file at a time; supports mp3, wav, flac, m4a files, each recording should be less than 30 minutes. Please upload pure dry audio files, as background noise and sounds will affect the video synthesis effect.',
+    listen: 'Listen',
+    delete: 'Delete',
+    upload: 'Upload',
+    uploadError: 'Audio Upload Failed',
+    durationError: 'Audio duration cannot exceed 30 minutes',
+    myVoice: 'My',
+    selectSpeaker: 'Select',
+    speaker: 'Speaker',
+    searchSpeaker: 'Search Speaker'
   },
   headerView: {
     headerBackText: 'Back',

@@ -1,5 +1,13 @@
 # Heygem - Heygen的开源平替产品 [【Switch to English】](./README.md)
 
+## 【新增Lite版本通知】
+
+**Lite版本正式发布，可以前往[这里](https://github.com/GuijiAI/HeyGem.ai/releases/tag/v1.0.3-Lite)下载，想体验标准版本（原版本），可以点击[这里](https://github.com/GuijiAI/HeyGem.ai/releases/tag/v1.0.3)下载**
+
+1. Lite 版可以减少两个服务 heygem-tts / heygem-asr，安装体积从70G减小到13.5G
+2. Lite 版订制形象和视频生成都更快
+3. Lite 版没有文字生成视频功能，只能用上传音频的方式生成视频
+
 ## 【致开发者伙伴的重要通知】
 
 **亲爱的Heygem开源社区成员：**
@@ -33,7 +41,7 @@
 [**Android版本**](https://github.com/GuijiAI/duix.ai/blob/main/duix-android/dh_aigc_android/README.md) |
 [**IOS版本**](https://github.com/GuijiAI/duix.ai/blob/main/duix-ios/GJLocalDigitalDemo/GJLocalDigitalSDK.md)
 
-<img src="./README_zh.assets/1CB5196D-C989-4577-8C57-DCBA3E0871B2-51277-000008CE6CF0B87B.jpg" width="50%">
+<img src="./README_zh.assets/cb10263a14cc826e22c2be4bcae01a89.jpg" width="50%">
 
 
 ## 【开源共创·荣耀共享】
@@ -79,9 +87,14 @@
 
 [AI数字人免费啦！GitHub爆火项目电脑就能跑](http://xhslink.com/a/8UT1kQ7vxjh8)
 
+[最火爆免费AI数字人，HeyGem V1.0.3，最新更新，一键整合包！口型效果超强，速度飞起，支持长视频、批量生成，8G显存可用！](https://www.bilibili.com/video/BV1SkoCYpEwh/?share_source=copy_web&vd_source=c38dcdb72a68f2a4e0b3c0f4f9a5a03c)
+
+[【HeyGem】一键包 windows直接运行 无需docker 硅基开源数字人](https://www.bilibili.com/video/BV1ZgovYGE3u/)
+
 ## 介绍
 
 <img src="README_zh.assets/image-20250304114114272.png">
+
 Heygem是一款专为Windows系统设计的全离线视频合成工具，它能够精确克隆您的外貌和声音，让您的形象数字化。您可以通过文字和语音驱动虚拟形象，进行视频制作。无需联网，保护隐私的同时，也能享受到便捷和高效的数字体验。
 
 - 核心功能
@@ -106,7 +119,7 @@ Heygem是一款专为Windows系统设计的全离线视频合成工具，它能�
    - docker pull guiji2025/fish-speech-ziming
    - docker pull guiji2025/heygem.ai
 
-## 如何安装
+## Windows 安装
 
 ### 前置条件
 
@@ -168,7 +181,7 @@ Heygem是一款专为Windows系统设计的全离线视频合成工具，它能�
 采用Docker方式安装，docker-compose如下：
 
 1. `docker-compose.yml`文件在`/deploy`目录下。
-2. 在`/deploy`目录执行`docker-compose up -d`
+2. 在`/deploy`目录执行`docker-compose up -d`，<u>如果您想使用lite版本，请执行`docker-compose -f docker-compose-lite.yml up -d`</u>
 3. 耐心等待一段时间（半小时左右，速度取决于网速），下载会消耗70G左右流量，注意连WIFI
 4. 看到Dokcer 中出现三个服务，表示成功了
 
@@ -178,6 +191,82 @@ Heygem是一款专为Windows系统设计的全离线视频合成工具，它能�
 
 1. 直接下载[官方构建的安装包](https://github.com/GuijiAI/HeyGem.ai/releases)
 2. 双击`HeyGem-x.x.x-setup.exe`即可安装
+
+## Ubuntu22.04 安装
+
+### 推荐配置
+
+ - CPU：第13代英特尔酷睿 i5-13400F
+ - 内存：32G及以上（必要）
+ - 显卡：rtx-4070（确保有英伟达显卡，并正确安装显卡驱动）
+ - 硬盘：空闲空间大于 100G
+
+### 安装 Docker
+
+> 先用`docker --version`检查是否安装了docker，如果安装了，则跳过以下步骤
+
+```bash
+sudo apt update
+sudo apt install docker.io
+sudo apt install docker-compose
+```
+
+### 安装显卡驱动
+
+1. 参考官方文档安装显卡驱动[https://www.nvidia.cn/drivers/lookup/](https://www.nvidia.cn/drivers/lookup/)
+
+    > 安装后执行`nvidia-smi`命令，如果显示显卡信息，则安装成功
+
+2. 安装 NVIDIA Container Toolkit
+
+    NVIDIA Container Toolkit 是 Docker 使用 NVIDIA GPU 的必要工具。安装步骤如下：
+    - 添加 NVIDIA 包仓库：
+      ```bash
+      distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+        && curl -s -L https://nvidia.github.io/libnvidia-container/gpgkey | sudo apt-key add - \
+        && curl -s -L https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.list | sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+      ```
+    - 更新包列表并安装工具包：
+      ```bash
+        sudo apt-get update
+        sudo apt-get install -y nvidia-container-toolkit
+      ```
+    - 配置 Docker 使用 NVIDIA 运行时：
+      ```bash
+        sudo nvidia-ctk runtime configure --runtime=docker
+      ```
+    - 重启 Docker 服务：
+      ```bash
+        sudo systemctl restart docker
+      ```
+
+### 安装服务端
+
+```bash
+cd /deploy
+docker-compose -f docker-compose-linux.yml up -d
+```
+
+> 与windows上拉镜像一样，如果下载太慢，需要指定国内镜像源方法是在`/etc/docker/daemon.json`文件中添加：
+>
+> ```json
+> {
+>   "registry-mirrors": [
+>     "https://hub.fast360.xyz",
+>     "https://hub.littlediary.cn",
+>     "https://docker.kejilion.pro",
+>     "https://docker.1panelproxy.com"
+>   ]
+> }
+> ```
+> 上面四个镜像源，随着时间推移，可能会有变化，请自行搜索最新的镜像源
+
+### 客户端
+
+1. 直接下载[官方构建的安装包](https://github.com/GuijiAI/HeyGem.ai/releases)的Linux版本
+2. 双击`HeyGem-x.x.x.AppImage`即可启动，无需安装
+
+  > 提醒：在Ubuntu系统中，如果您使用`root`用户进入桌面，直接双击`HeyGem-x.x.x.AppImage`可能运行不了，需要在命令行终端中执行`./HeyGem-x.x.x.AppImage --no-sandbox`,加上`--no-sandbox`参数即可。
 
 ## 开放 API
 
@@ -312,3 +401,7 @@ Heygem是一款专为Windows系统设计的全离线视频合成工具，它能�
 
 - ASR 基于 [fun-asr](https://github.com/modelscope/FunASR)
 - TTS 基于 [fish-speech-ziming](https://github.com/fishaudio/fish-speech)
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=GuijiAI/HeyGem.ai&type=Date)](https://www.star-history.com/#GuijiAI/HeyGem.ai&Date)
