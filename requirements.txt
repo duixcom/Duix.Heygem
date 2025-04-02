@@ -1,0 +1,5 @@
+gradio==4.44.1
+requests~=2.32.3
+pydub==0.25.1
+uuid==1.30
+python-json-logger==3.3.0
