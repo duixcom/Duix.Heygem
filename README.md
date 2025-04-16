@@ -1,4 +1,4 @@
-# Heygem - Open Source Alternative to Heygen [【切换中文】](./README_zh.md)
+# Heygem - Open Source Alternative to Heygen [【切换中文】](./README_zh.md) [【日本語に切り替え】](./README_ja.md)
 
 ## [New Ubuntu Version Notice]
 
@@ -207,6 +207,64 @@ Installation using Docker, docker-compose as follows:
 ### Install Docker
 
 > First, check if Docker is installed using `docker --version`. If it is installed, skip the following steps.
+
+```bash
+sudo apt update
+sudo apt install docker.io
+sudo apt install docker-compose
+```
+
+### Install Graphics Card Driver
+
+1. Refer to the official documentation to install the graphics card driver [https://www.nvidia.cn/drivers/lookup/](https://www.nvidia.cn/drivers/lookup/)
+
+    > After installation, execute the `nvidia-smi` command. If the graphics card information is displayed, the installation is successful.
+
+2. Install NVIDIA Container Toolkit
+
+    NVIDIA Container Toolkit is a necessary tool for Docker to use NVIDIA GPUs. The installation steps are as follows:
+    - Add the NVIDIA package repository:
+      ```bash
+      distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+        && curl -s -L https://nvidia.github.io/libnvidia-container/gpgkey | sudo apt-key add - \
+        && curl -s -L https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.list | sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+      ```
+    - Update the package list and install the toolkit:
+      ```bash
+        sudo apt-get update
+        sudo apt-get install -y nvidia-container-toolkit
+      ```
+    - Configure Docker to use the NVIDIA runtime:
+      ```bash
+        sudo nvidia-ctk runtime configure --runtime=docker
+      ```
+    - Restart the Docker service:
+      ```bash
+        sudo systemctl restart docker
+      ```
+
+### Installing the Server
+
+```bash
+cd /deploy
+docker-compose -f docker-compose-linux.yml up -d
+```
+
+> Similar to pulling images on Windows, if the download is too slow, you need to specify a domestic mirror source. The method is to add the following to the `/etc/docker/daemon.json` file:
+>
+> ```json
+> {
+>   "registry-mirrors": [
+>     "https://hub.fast360.xyz",
+>     "https://hub.littlediary.cn",
+>     "https://docker.kejilion.pro",
+>     "https://docker.1panelproxy.com"
+>   ]
+> }
+> ```
+> The above four mirror sources may change over time, please search for the latest mirror sources yourself.
+
+### Client
 
 1. Directly download the [officially built installation package](https://github.com/GuijiAI/HeyGem.ai/releases) for the Linux version
 2. Double-click `HeyGem-x.x.x.AppImage` to launch, no installation required

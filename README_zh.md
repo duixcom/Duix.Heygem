@@ -1,4 +1,4 @@
-# Heygem - Heygen的开源平替产品 [【Switch to English】](./README.md)
+# Heygem - Heygen的开源平替产品 [【Switch to English】](./README.md) [【切换日语】](./README_ja.md)
 ## 【公告】
 Heygem 数字人克隆智能体和插件已成功上线至Coze 平台 ，无需复杂部署，即使是小白用户也能轻松上手直接使用。
 
