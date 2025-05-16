@@ -29,6 +29,14 @@ const obj = [
     offIcon,
     active: true,
     path: '/home'
+  },
+  {
+    key: 'common.menu.setting',
+    name: t('common.menu.setting'),
+    onIcon,
+    offIcon,
+    active: true,
+    path: '/setting'
   }
   /* {
       name: "账号",
