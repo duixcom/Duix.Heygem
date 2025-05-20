@@ -31,12 +31,12 @@ export async function train(path, lang = 'zh') {
 }
 
 export function makeAudio4Video({voiceId, text}) {
-  return makeAudio({voiceId, text, targetDir: assetPath.ttsProduct})
+  return makeAudio({voiceId, text, targetDir: assetPath().ttsProduct})
 }
 
 export function copyAudio4Video(filePath) {
   // 将filePath复制到ttsProduct目录下
-  const targetDir = assetPath.ttsProduct
+  const targetDir = assetPath().ttsProduct
   const fileName = dayjs().format('YYYYMMDDHHmmssSSS') + path.extname(filePath)
   const targetPath = path.join(targetDir, fileName)
   fs.copyFileSync(filePath, targetPath)

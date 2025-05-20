@@ -65,5 +65,21 @@ export default [
         script: `alter table video
                     add voice_id integer;
                 `
+    },
+    {
+        version: 4,
+        script: `create table setting
+                (
+                    id                   INTEGER
+                            primary key autoincrement,
+                    group_name           TEXT,
+                    key                  TEXT,
+                    value                TEXT,
+                    label                TEXT,
+                    created_at           INTEGER  not null default (strftime('%s', 'now')),
+                    constraint setting_unique unique (group_name, key)
+                );
+                create index idx_setting_group_key on setting(group_name, key);
+                `
     }
 ]
