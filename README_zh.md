@@ -433,5 +433,4 @@ docker-compose -f docker-compose-linux.yml up -d
 - TTS 基于 [fish-speech-ziming](https://github.com/fishaudio/fish-speech)
 
 ## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=GuijiAI/HeyGem.ai&type=Date)](https://www.star-history.com/#GuijiAI/HeyGem.ai&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=duixcom/Duix.Heygem&type=Date)](https://www.star-history.com/#duixcom/Duix.Heygem&Date)
