@@ -24,7 +24,7 @@
 
 ## 1. What's HeyGem
 
-**HeyGem** is a free and open-source AI avatar project developed by **Duix.com**.
+**HeyGem** is a free and open-source AI avatar project developed by **[Duix.com](https://duix.com/)**.
 
 Seven years ago, a group of young pioneers chose an unconventional technical path, developing a method to train digital human models using real-person video data. Unlike traditional costly 3D digital human approaches, we leveraged AI-generated technology to create ultra-realistic digital humans, slashing production costs from hundreds of thousands of dollars to just $1,000. This innovation has empowered over 10,000 enterprises and generated over 500,000 personalized avatars for professionals across fields – educators, content creators, legal experts, medical practitioners, and entrepreneurs – dramatically enhancing their video production efficiency. However, our vision extends beyond commercial applications. We believe this transformative technology should be accessible to everyone. To democratize digital human creation, we've open-sourced our cloning technology and video production framework. Our commitment remains: breaking down technological barriers to make cutting-edge tools available to all. Now, anyone with a computer can freely craft their own AI Avatar and produce videos at zero cost – this is the essence of  **HeyGem**.
 
@@ -370,11 +370,11 @@ Describe the reproduction steps in detail, with screenshots if possible.
 
 HeyGem's digital human realizes digital human cloning and non-real-time video synthesis.
 
-If you want a digital human to support interaction, you can visit [duix.com](www.duix.com) to experience the free test.
+If you want a digital human to support interaction, you can visit [duix.com](https://duix.com/) to experience the free test.
 
 ## 8. Contact
 
-If you have any questions, please raise an issue or contact us at james@duix.com
+If you have any questions, please raise an issue or contact us at [james@duix.com](mailto:james@duix.com)
 
 ## 9. License
 

@@ -379,7 +379,7 @@ docker-compose -f docker-compose-linux.yml up -d
 
 - [常见问题](./doc/常见问题.md)
 
-- [HeyGem 开源数字人常见问题及解决办法](https://jexopm4t2a.feishu.cn/wiki/EjRPwux9DiNUtakOd1BcLQWEn3f))
+- [HeyGem 开源数字人常见问题及解决办法](https://jexopm4t2a.feishu.cn/wiki/EjRPwux9DiNUtakOd1BcLQWEn3f)
 
 
 ## 提问前自查步骤
@@ -433,5 +433,4 @@ docker-compose -f docker-compose-linux.yml up -d
 - TTS 基于 [fish-speech-ziming](https://github.com/fishaudio/fish-speech)
 
 ## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=GuijiAI/HeyGem.ai&type=Date)](https://www.star-history.com/#GuijiAI/HeyGem.ai&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=duixcom/Duix.Heygem&type=Date)](https://www.star-history.com/#duixcom/Duix.Heygem&Date)
